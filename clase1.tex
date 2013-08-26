@@ -1,0 +1,153 @@
+\documentclass{beamer}[10]
+\usepackage{pgf}
+\usepackage{beamerthemesplit}
+
+% Basado en: http://www.tjansson.dk/?p=82
+
+\usepackage[utf8]{inputenc}
+
+
+\definecolor{kugreen}{RGB}{149,122,143} %{50,93,61}
+\definecolor{kugreenlys}{RGB}{132,158,139}
+\definecolor{kugreenlyslys}{RGB}{173,190,177}
+\definecolor{kugreenlyslyslys}{RGB}{214,223,216}
+\setbeamercovered{transparent}
+\mode<presentation>
+\usetheme[numbers,totalnumber,compress,sidebarshades]{PaloAlto}
+
+% Con número de página, o con footbar
+%\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{footline}[frame]
+
+  \usecolortheme[named=kugreen]{structure}
+  \useinnertheme{circles}
+  \usefonttheme[onlymath]{serif}
+  \setbeamercovered{transparent}
+  \setbeamertemplate{blocks}[rounded][shadow=true]
+  \logo{\includegraphics[width=1.5cm]{imagenes/linti.pdf}}
+
+% Ocultar barra de navegación
+\beamertemplatenavigationsymbolsempty
+
+\title{Programando con Python y Robots}
+%\subtitle{la seguridad, la adecuada instalación y la libertad de elección}
+\author{Fernando López}
+\institute{LINTI \\ Facultad de Informática \\ Universidad Nacional de la Plata
+}
+\date{29 de Agosto de 2013}
+
+
+\begin{document}
+
+\frame{\titlepage \vspace{-0.5cm}
+
+}
+
+
+\frame
+{
+\frametitle{Indice}
+\tableofcontents[pausesection]
+}
+
+\begin{frame}{Los inicios del proyectos}
+\end{frame}
+\begin{frame}{Pasantías}
+\end{frame}
+\begin{frame}{El proyecto en las escuelas}
+\end{frame}
+\begin{frame}{Software necesario}
+	\begin{itemize}
+		\item Duinobot $\rightarrow$ Lihuen/GitHub/Pip
+		\item Firmata $\rightarrow$ GitHub/Preinstalado
+	\end{itemize}
+	\begin{itemize}
+		\item Duinobot es la API en Python con la que estaremos en contacto.
+		\item Duinobot incluye una copia modificada de PyFirmata encargada de la comunicación.
+		\item Interfaz serial.
+		\item El robot ejecuta una copia modificada de Firmata.
+	\end{itemize}
+\end{frame}
+\begin{frame}{Primeros pasos}
+	\begin{itemize}
+		\item Libro.
+		\item Intérprete.
+		\item Conexión
+		\item Beep.
+		\item Movimientos.
+		\item Movimientos simples.
+		\item Figuras.
+		\item Sensores y condicionales.
+		\item Control remoto con raw\_input.
+	\end{itemize}
+\end{frame}
+\begin{frame}{Algoritmos simples}
+	\begin{itemize}
+		\item Detenerse en obstáculo.
+		\item Esquivar.
+		\item Escapar.
+		\item Mantenerse en el perímetro.
+		\item Seguir línea.
+		\item Beep proporcional a la distancia.
+		\item Beep inversamente proporcional.
+	\end{itemize}
+\end{frame}
+\frame
+{
+\frametitle{Direcciones}
+
+\begin{block}{Direcciones de contacto}
+\begin{center}
+flopez@linti.unlp.edu.ar \\
+soportelihuen@linti.unlp.edu.ar
+\end{center}
+\end{block}
+
+}
+
+
+%~ \frame
+%~ {
+%~ \frametitle{Entorno de pre-boot del BIOS (3)}
+	%~ Hoy en día sería deseable:
+	%~ \begin{itemize}
+		%~ \item Acceso al stack TCP, por ejemplo para gestores de 
+		%~ arranque por red (en lugar de depender de la option ROM con 
+		%~ soporte PXE que pudiera tener la NIC).
+		%~ \item Uso de dispositivos como un mouse.
+		%~ \item La posibilidad de ampliar o mejorar el soporte de 
+		%~ hardware sin option ROMs.
+		%~ \item Acceso a direccionamiento de 32 o 64 bits.
+	%~ \end{itemize}
+%~ }
+%~ 
+%~ \frame{
+%~ 
+%~ Efteråret 2004
+%~ \subsection{Valg af projekt og vejleder}
+%~ \frametitle{Tilfældighed}
+%~ 
+%~ \begin{block}{Kryptering med kaotiske kredsløb}
+%~ \begin{columns}
+%~ \column{.3\textwidth} \hspace{0.5cm}
+%~ \includegraphics[width=0.7\textwidth]{imagenes/linti-f} 
+%~ \column{.7\textwidth}
+%~ \textit{Mogens Høgh Jensen}, NBI
+%~ \end{columns}
+%~ \end{block}
+%~ 
+%~ \begin{block}{Sandriller}
+%~ \begin{columns}
+%~ \column{.3\textwidth} \hspace{0.5cm}
+%~ \includegraphics[width=0.7\textwidth]{imagenes/linti-f} 
+%~ \column{.7\textwidth}
+%~ \textit{Clive Ellegaard}, NBI og \emph{Tomas Bohr}, DTU
+%~ \end{columns}
+%~ \end{block}
+%~ }
+
+
+
+
+
+\end{document}
