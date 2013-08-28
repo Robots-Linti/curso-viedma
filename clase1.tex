@@ -4,8 +4,33 @@
 
 % Basado en: http://www.tjansson.dk/?p=82
 
-\usepackage[utf8]{inputenc}
-
+\usepackage[utf8x]{inputenc}
+\usepackage{moreverb}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{mygray}{rgb}{0.67, 0.73, 0.78}
+\lstset{
+	language=Python,
+	basicstyle=\footnotesize,
+	columns=fullflexible, % http://tex.stackexchange.com/questions/4911/phantom-spaces-in-listings-pdf
+	upquote=true,
+	breaklines=true,
+	commentstyle=\color{mygreen},
+	keywordstyle=\color{blue},
+	stringstyle=\color{mymauve},
+    extendedchars=true, 
+    inputencoding=utf8x,
+    literate={á}{{\'a}}1
+             {é}{{\'e}}1
+             {í}{{\'i}}1
+             {ó}{{\'o}}1
+             {ú}{{\'u}}1
+             {ñ}{{\~n}}1
+}
 
 \definecolor{kugreen}{RGB}{149,122,143} %{50,93,61}
 \definecolor{kugreenlys}{RGB}{132,158,139}
@@ -51,12 +76,133 @@
 }
 
 \begin{frame}{Los inicios del proyectos}
+\begin{itemize}
+	\item Basado en los cursos de 
+\end{itemize}
 \end{frame}
 \begin{frame}{Pasantías}
 \end{frame}
 \begin{frame}{El proyecto en las escuelas}
 \end{frame}
-\begin{frame}{Software necesario}
+\begin{frame}[fragile]{Software necesario}
+	Para trabajar va a ser necesario:
+	\begin{itemize}[<+->]
+		\item Alguna distribución GNU/Linux (de preferencia Lihuen o Debian)
+		\item Python 2.6/2.7
+		\item Algún intérprete como pycrust o idle (opcional)
+		\item Algún editor de texto con resaltado de sintaxis (como Geany/Gedit)
+		\item La API para controlar el robot:
+			\begin{itemize}
+				\item En Lihuen:
+\verb+apt-get install robot+
+				\item En cualquier distro:
+\verb+pip install duinobot+
+				\item Para desarrollo:
+{\footnotesize
+\begin{verbatim}
+git clone git@github.com:Robots-Linti/duinobot.git
+cd duinobot
+python setup.py install
+\end{verbatim}
+}
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Primeros pasos}
+	\begin{itemize}[<+->]
+		\item Descargar el manual:\\
+		{\footnotesize
+		\url{http://robots.linti.unlp.edu.ar/material\_disponible}}
+		\item Abrir PyCrust y conectarnos al robot:
+\begin{block}{}
+\begin{lstlisting}
+from duinobot import *
+board = Board()
+robot = Robot(board, 0)
+\end{lstlisting}
+\end{block}
+		\item Por defecto los robots vienen con id 0, hay que inicializarlos de a uno:
+\begin{block}{}
+\begin{lstlisting}
+robot.setId(4)
+robot = Robot(board, 4)
+\end{lstlisting}
+\end{block}
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Movimientos básicos y beep}
+	\begin{itemize}
+		\item \verb+robot.forward(velocidad, tiempo)+
+		\item \verb+robot.backward(velocidad, tiempo)+
+		\item \verb+robot.turnLeft(velocidad, tiempo)+
+		\item \verb+robot.turnRight(velocidad, tiempo)+
+		\item \verb+robot.beep(frecuencia, tiempo)+
+	\end{itemize}
+	Con tiempo en segundos...
+\end{frame}
+\begin{frame}[fragile]{Con Joystick}
+	\begin{itemize}[<+->]
+		\item Principalmente usado para motivar
+		\item Acciones predefinidas
+\begin{block}{}
+\begin{lstlisting}
+joy = Joystick(robot, nroJoystick)
+joy.play()
+\end{lstlisting}
+\end{block}
+		\item El número de Joystick va de 0 en adelante
+		\item La API aún no tiene una forma directa de programar los botones
+		\item Los acelerómetros de las Notebooks a veces son listados por el PyGame como Joysticks
+		\item joy.play() es un loop que termina con el botón ``start'' del joystick
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Métodos y funciones útiles}
+	\begin{itemize}
+		\item board.report() $\leftarrow$ lista de robots encendidos
+		\item joysticks() $\leftarrow$ lista de Joysticks disponibles
+		\item robot.senses() $\leftarrow$ panel con los valores de los sensores~\footnote{es un poco propenso a generar errores aún, en la versión 0.12 debería ser más seguro}
+	\end{itemize}\pause
+	\begin{block}{Ejemplo: Robot sorpresa}
+		\begin{lstlisting}
+from random import random
+from duinobot import *
+board = Board()
+robots = board.report()
+eleccion = int(random() * len(robots))
+robot = Robot(board, robots[eleccion])
+robot.forward(50, 2)
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+\begin{frame}
+	\begin{center}
+		\only<1>{\huge ¿Cómo harían para que el robot vaya haciendo beeps a mientras avanza?}
+		\only<2>{\huge ¿Sin detenerse en cada beep?}
+	\end{center}
+\end{frame}
+\begin{frame}[fragile]{Beeps mientras el robot se mueve}
+	\begin{itemize}[<+->]
+		\item Imposible con robot.forward(velocidad, tiempo)
+		\item Decimos que el anterior es bloqueante ya que bloquea el interprete hasta terminar
+		\item robot.forward(velocidad) es la versión no bloqueante
+		\item Cuando usamos la anterior hay que recordar usar robot.stop() al final
+		\item Todos los métodos de movimiento se pueden invocar de forma bloqueante y no bloqueante
+		\item También el beep() (se detiene con beep(0))
+	\end{itemize}\pause
+	\begin{block}{}
+		\begin{lstlisting}
+robot.forward(50)
+for i in range(5):
+  robot.beep(i * 100, 1)
+
+robot.stop()
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+
+\begin{frame}
 	\begin{itemize}
 		\item Duinobot $\rightarrow$ Lihuen/GitHub/Pip
 		\item Firmata $\rightarrow$ GitHub/Preinstalado
