@@ -76,13 +76,57 @@
 }
 
 \begin{frame}{Los inicios del proyectos}
-\begin{itemize}
-	\item Basado en los cursos de 
+\begin{itemize}[<+->]
+	\item Inicialmente en 2008 basado en los materiales del IPRE
+	\item Compras en baja escala
+	\item Cursos en escuelas mediante contacto con los directivos
+	\item Cursos en pasantías de alumnos de los colegios de UNLP
 \end{itemize}
 \end{frame}
-\begin{frame}{Pasantías}
+\begin{frame}{Hardware}
+	\begin{itemize}[<+->]
+		\item Robot Scribbler 1 de Parallax
+		\begin{itemize}
+			\item Sensores de línea IR
+			\item Sensores de obstáculos IR
+			\item Parlante
+		\end{itemize}
+		\item Placa de expansión del IPRE:
+		\begin{itemize}
+			\item Bluetooth
+			\item Cámara de 640x480 píxels
+			\item Sensores IR
+			\item Sensores de luminosidad
+		\end{itemize}
+	\end{itemize}
 \end{frame}
-\begin{frame}{El proyecto en las escuelas}
+\begin{frame}{Problemas con el hardware}
+	\begin{itemize}[<+->]
+		\item Importados desde EEUU
+		\item Problemas con la conexión Bluetooth
+		\item Licencia de la API poco clara (una parte es shared source pero no libre)
+	\end{itemize}
+	\begin{itemize}[<+->]
+		\item Alternativa desarrollada en Argentina por Robot Group
+		\item Garantía cuando un robot se daña
+		\item API de bajo nivel con licencia tipo MIT
+	\end{itemize}
+\end{frame}
+\begin{frame}{El proyecto en las escuelas 2012}
+	\begin{itemize}[<+->]
+		\item Proyecto financiado por Fundación YPF
+		\item 20 robots por escuela
+		\item 1 notebook con Ubuntu
+		\item 1 cañón
+		\item Alumnos y docentes de la UNLP hicieron de tutores
+	\end{itemize}
+\end{frame}
+\begin{frame}{Este año}
+	\begin{itemize}[<+->]
+		\item Nuevas pasantías
+		\item Apoyo a las escuelas que siguen trabajando por su cuenta
+		\item Búsqueda de alternativas económicas a ZigBee
+	\end{itemize}
 \end{frame}
 \begin{frame}[fragile]{Software necesario}
 	Para trabajar va a ser necesario:
@@ -95,7 +139,7 @@
 			\begin{itemize}
 				\item En Lihuen:
 \verb+apt-get install robot+
-				\item En cualquier distro:
+				\item En cualquier distro\footnote{Primero instalar pygame, pyserial y tkinter}:
 \verb+pip install duinobot+
 				\item Para desarrollo:
 {\footnotesize
@@ -108,7 +152,12 @@ python setup.py install
 			\end{itemize}
 	\end{itemize}
 \end{frame}
-
+\begin{frame}{Revisión rápida de la práctica 1}
+	\begin{itemize}[<+->]
+		\item Instalación: Ejercicios 1 a 9
+		\item Realizar: Ejercicios 10 y 11
+	\end{itemize}
+\end{frame}
 \begin{frame}[fragile]{Primeros pasos}
 	\begin{itemize}[<+->]
 		\item Descargar el manual:\\
@@ -140,6 +189,12 @@ robot = Robot(board, 4)
 		\item \verb+robot.beep(frecuencia, tiempo)+
 	\end{itemize}
 	Con tiempo en segundos...
+	\begin{itemize}[<+->]
+		\item Mover el robot
+		\item Hacer un triángulo
+		\item Hacer un cuadrado
+		\item Hacer 5 cuadrados
+	\end{itemize}
 \end{frame}
 \begin{frame}[fragile]{Con Joystick}
 	\begin{itemize}[<+->]
@@ -151,6 +206,7 @@ joy = Joystick(robot, nroJoystick)
 joy.play()
 \end{lstlisting}
 \end{block}
+		\item Video TEC La Plata
 		\item El número de Joystick va de 0 en adelante
 		\item La API aún no tiene una forma directa de programar los botones
 		\item Los acelerómetros de las Notebooks a veces son listados por el PyGame como Joysticks
@@ -187,19 +243,98 @@ robot.forward(50, 2)
 		\item Imposible con robot.forward(velocidad, tiempo)
 		\item Decimos que el anterior es bloqueante ya que bloquea el interprete hasta terminar
 		\item robot.forward(velocidad) es la versión no bloqueante
-		\item Cuando usamos la anterior hay que recordar usar robot.stop() al final
-		\item Todos los métodos de movimiento se pueden invocar de forma bloqueante y no bloqueante
-		\item También el beep() (se detiene con beep(0))
-	\end{itemize}\pause
-	\begin{block}{}
-		\begin{lstlisting}
+			\begin{block}{}
+				\begin{lstlisting}
 robot.forward(50)
 for i in range(5):
   robot.beep(i * 100, 1)
 
 robot.stop()
+				\end{lstlisting}
+			\end{block}
+		\item Cuando usamos la anterior hay que recordar usar robot.stop() al final
+		\item Todos los métodos de movimiento se pueden invocar de forma bloqueante y no bloqueante
+		\item También el beep() (se detiene con beep(0))
+	\end{itemize}
+\end{frame}
+\begin{frame}{Estructuras de control y raw\_input()}
+	\begin{itemize}[<+->]
+		\item Se pueden plantear juegos de preguntas y respuestas
+		\item Juevos de azar con random
+		\item Control remoto con las teclas (con ENTER)
+		\item Secuencia de control en un string
+	\end{itemize}
+\end{frame}
+\begin{frame}{Ejercicio}
+	Escribir un script que decodifique un string donde cada letra representa un movimiento:
+	\begin{itemize}
+		\item f $\rightarrow$ avanzar 1 segundo
+		\item b $\rightarrow$ retroceder 1 segundo
+		\item l $\rightarrow$ girar a izquierda medio segundo
+		\item r $\rightarrow$ girar a derecha medio segundo
+	\end{itemize}\pause
+	Por ejemplo: "flfrb" avanza, gira a izquierda, avanza, gira a derecha y retrocede.
+\end{frame}
+\begin{frame}
+	\begin{center}
+		{\huge ¡Un slide en blanco!}
+	\end{center}
+\end{frame}
+\begin{frame}[fragile]{Una posible solución}
+	\begin{block}{}
+		\begin{lstlisting}
+		movimientos = "flfbrfbl"
+		for movimiento in movimientos:
+		  if movimiento == "f":
+		    robot.forward(50, 1)
+		  elif movimiento == "b":
+		    robot.backward(50, 1)
+		  elif movimiento == "l":
+		    robot.turnLeft(50, 1)
+		  elif movimiento == "r":
+		    robot.turnRight(50, 1)
+		  else:
+		    print "Movimiento no válido"
+		    robot.beep(500, 1)
 		\end{lstlisting}
 	\end{block}
+\end{frame}
+\begin{frame}{Revisión rápida de la práctica 2}
+Vistazo de los ejercicios
+\end{frame}
+\begin{frame}[fragile]{Sensores y condicionales de nuevo}
+	\begin{itemize}[<+->]
+		\item \verb+robot.getWheels()+
+		\item \verb+robot.getLine()+
+		\item \verb+robot.ping()+
+		\item \verb+robot.getObstacle(distance)+
+		\item \verb+robot.getIR()+ $rightarrow$ no implementado
+		\item \verb+robot.senses()+ $rightarrow$ en proceso de ser reimplementado usando un event loop
+	\end{itemize}
+\end{frame}
+\begin{frame}{Actividades}
+	\begin{itemize}[<+->]
+		\item Leer los sensores desde el intérprete interativo
+		\item Hacer un script que haga que el robot avance en superficies claras y se detenga en superficies oscuras
+		\item Hacer un script que haga que el robot se detenga al encontrar un obstáculo
+		\item Hacer que el robot esquive el obstáculo en lugar de detenerse
+		\item Hacer que el robot se escape marcha atrás cuando detecte que algo se acerca
+		\item Hacer distintos tipos de alarmas con los sensores usando el beep:
+		\begin{itemize}
+			\item Al ser levantado del suelo
+			\item Al pasar sobre un objeto más oscuro o claro que el suelo
+			\item Al detectar un obstáculo
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+\begin{frame}{Revisión rápida de la práctica 3}
+	Revisión rápida + algunos ejercicios
+\end{frame}
+\begin{frame}{Más actividades}
+	\begin{itemize}
+		\item Hacer que el robot recorra el lugar hasta estar a 10cm de algún obstáculo, si se remueve el obstáculo el robot deberá buscar uno nuevo
+		\item Hacer un seguidor de línea
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -207,16 +342,16 @@ robot.stop()
 		\item Duinobot $\rightarrow$ Lihuen/GitHub/Pip
 		\item Firmata $\rightarrow$ GitHub/Preinstalado
 	\end{itemize}
-	\begin{itemize}
+	\begin{itemize}[<+->]
 		\item Duinobot es la API en Python con la que estaremos en contacto.
 		\item Duinobot incluye una copia modificada de PyFirmata encargada de la comunicación.
 		\item Interfaz serial.
 		\item El robot ejecuta una copia modificada de Firmata.
 	\end{itemize}
 \end{frame}
-\begin{frame}{Primeros pasos}
-	\begin{itemize}
-		\item Libro.
+\begin{frame}{Resumen}
+	\begin{itemize}[<+->]
+		\item Libro y materiales.
 		\item Intérprete.
 		\item Conexión
 		\item Beep.
@@ -228,7 +363,7 @@ robot.stop()
 	\end{itemize}
 \end{frame}
 \begin{frame}{Algoritmos simples}
-	\begin{itemize}
+	\begin{itemize}[<+->]
 		\item Detenerse en obstáculo.
 		\item Esquivar.
 		\item Escapar.
@@ -236,6 +371,12 @@ robot.stop()
 		\item Seguir línea.
 		\item Beep proporcional a la distancia.
 		\item Beep inversamente proporcional.
+	\end{itemize}
+\end{frame}
+\begin{frame}{Más prácticas}
+	\begin{itemize}
+		\item 4: Tipos y archivos
+		\item Práctica final para los colegios: armar una demostración y exponerla
 	\end{itemize}
 \end{frame}
 \frame
