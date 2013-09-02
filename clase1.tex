@@ -229,6 +229,7 @@ robots = board.report()
 eleccion = int(random() * len(robots))
 robot = Robot(board, robots[eleccion])
 robot.forward(50, 2)
+board.exit()
 		\end{lstlisting}
 	\end{block}
 \end{frame}
@@ -308,8 +309,8 @@ Vistazo de los ejercicios
 		\item \verb+robot.getLine()+
 		\item \verb+robot.ping()+
 		\item \verb+robot.getObstacle(distance)+
-		\item \verb+robot.getIR()+ $rightarrow$ no implementado
-		\item \verb+robot.senses()+ $rightarrow$ en proceso de ser reimplementado usando un event loop
+		\item \verb+robot.getIR()+ $\rightarrow$ no implementado
+		\item \verb+robot.senses()+ $\rightarrow$ en proceso de ser reimplementado usando un event loop
 	\end{itemize}
 \end{frame}
 \begin{frame}{Actividades}
@@ -327,65 +328,13 @@ Vistazo de los ejercicios
 		\end{itemize}
 	\end{itemize}
 \end{frame}
-\begin{frame}{Revisión rápida de la práctica 3}
-	Revisión rápida + algunos ejercicios
-\end{frame}
-\begin{frame}{Más actividades}
-	\begin{itemize}
-		\item Hacer que el robot recorra el lugar hasta estar a 10cm de algún obstáculo, si se remueve el obstáculo el robot deberá buscar uno nuevo
-		\item Hacer un seguidor de línea
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\begin{itemize}
-		\item Duinobot $\rightarrow$ Lihuen/GitHub/Pip
-		\item Firmata $\rightarrow$ GitHub/Preinstalado
-	\end{itemize}
-	\begin{itemize}[<+->]
-		\item Duinobot es la API en Python con la que estaremos en contacto.
-		\item Duinobot incluye una copia modificada de PyFirmata encargada de la comunicación.
-		\item Interfaz serial.
-		\item El robot ejecuta una copia modificada de Firmata.
-	\end{itemize}
-\end{frame}
-\begin{frame}{Resumen}
-	\begin{itemize}[<+->]
-		\item Libro y materiales.
-		\item Intérprete.
-		\item Conexión
-		\item Beep.
-		\item Movimientos.
-		\item Movimientos simples.
-		\item Figuras.
-		\item Sensores y condicionales.
-		\item Control remoto con raw\_input.
-	\end{itemize}
-\end{frame}
-\begin{frame}{Algoritmos simples}
-	\begin{itemize}[<+->]
-		\item Detenerse en obstáculo.
-		\item Esquivar.
-		\item Escapar.
-		\item Mantenerse en el perímetro.
-		\item Seguir línea.
-		\item Beep proporcional a la distancia.
-		\item Beep inversamente proporcional.
-	\end{itemize}
-\end{frame}
-\begin{frame}{Más prácticas}
-	\begin{itemize}
-		\item 4: Tipos y archivos
-		\item Práctica final para los colegios: armar una demostración y exponerla
-	\end{itemize}
-\end{frame}
 \frame
 {
 \frametitle{Direcciones}
 
 \begin{block}{Direcciones de contacto}
 \begin{center}
-flopez@linti.unlp.edu.ar \\
+robots@linti.unlp.edu.ar \\
 soportelihuen@linti.unlp.edu.ar
 \end{center}
 \end{block}
