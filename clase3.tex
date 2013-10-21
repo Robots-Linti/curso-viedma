@@ -1,0 +1,173 @@
+\documentclass{beamer}[10]
+\usepackage{pgf}
+\usepackage{beamerthemesplit}
+
+% Basado en: http://www.tjansson.dk/?p=82
+
+\usepackage[utf8x]{inputenc}
+\usepackage{moreverb}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{mygray}{rgb}{0.67, 0.73, 0.78}
+\lstset{
+	language=Python,
+	basicstyle=\footnotesize,
+	columns=fullflexible, % http://tex.stackexchange.com/questions/4911/phantom-spaces-in-listings-pdf
+	upquote=true,
+	breaklines=true,
+	commentstyle=\color{mygreen},
+	keywordstyle=\color{blue},
+	stringstyle=\color{mymauve},
+    extendedchars=true, 
+    inputencoding=utf8x,
+    literate={á}{{\'a}}1
+             {é}{{\'e}}1
+             {í}{{\'i}}1
+             {ó}{{\'o}}1
+             {ú}{{\'u}}1
+             {ñ}{{\~n}}1
+}
+
+\definecolor{kugreen}{RGB}{149,122,143} %{50,93,61}
+\definecolor{kugreenlys}{RGB}{132,158,139}
+\definecolor{kugreenlyslys}{RGB}{173,190,177}
+\definecolor{kugreenlyslyslys}{RGB}{214,223,216}
+\setbeamercovered{transparent}
+\mode<presentation>
+\usetheme[numbers,totalnumber,compress,sidebarshades]{PaloAlto}
+
+% Con número de página, o con footbar
+%\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{footline}[frame]
+
+  \usecolortheme[named=kugreen]{structure}
+  \useinnertheme{circles}
+  \usefonttheme[onlymath]{serif}
+  \setbeamercovered{transparent}
+  \setbeamertemplate{blocks}[rounded][shadow=true]
+  \logo{\includegraphics[width=1.5cm]{imagenes/linti.pdf}}
+
+% Ocultar barra de navegación
+\beamertemplatenavigationsymbolsempty
+
+\title{Programando con Python y Robots}
+\author{Fernando López}
+\institute{LINTI \\ Facultad de Informática \\ Universidad Nacional de la Plata
+}
+\date{24 de Octubre de 2013}
+
+
+\begin{document}
+
+\frame{\titlepage \vspace{-0.5cm}
+
+}
+
+
+\frame
+{
+\frametitle{Indice}
+\tableofcontents[pausesection]
+}
+
+
+\begin{frame}{Actividad de entrega obligatoria}
+	Para dar por aprobado el curso deberán entregar en grupos de 2 o 3 personas uno de los siguientes ejercicios:
+	\begin{enumerate}[<+->]
+		\item Planteo de 2 ejercicios para alumnos de escuelas secundarias.
+		\item Planteo de 2 ejercicios para alumnos de nivel universitario.
+		\item Planteo de modificaciones o ampliaciones posibles a la API del robot:
+			\begin{itemize}
+				\item Soporte para otros sensores/dispositivos.
+				\item Añadir otros métodos o funcionalidades.
+			\end{itemize}
+	\end{enumerate}
+	Enunciado en detalle: \url{https://github.com/Robots-Linti/curso-viedma#trabajo-final}
+\end{frame}
+\begin{frame}{Módulos}{Agrupando clases y funciones}
+import x
+import x as y
+from x import y,z
+from x import *
+\verb+if __name__ == "__main__"+
+\end{frame}
+\begin{frame}{Paquetes}{Agrupando módulos}
+\end{frame}
+\begin{frame}{Interfaces gráficas}{Camino a un control remoto}
+tk, Gtk3, Qt, WxWindows, otras...
+Widgets
+Window < Puede contener un solo elemento
+Layouts > Box, Fixed, Grid, etc...
+Button
+Label
+Scale > Adjustment
+\end{frame}
+\begin{frame}
+Patterns:
+Template pattern -> Joystick
+Observer -> Scale
+State -> Laberinto
+\end{frame}
+\frame
+{
+\frametitle{Direcciones}
+
+\begin{block}{Direcciones de contacto}
+\begin{center}
+robots@linti.unlp.edu.ar \\
+soportelihuen@linti.unlp.edu.ar
+\end{center}
+\end{block}
+
+}
+
+
+%~ \frame
+%~ {
+%~ \frametitle{Entorno de pre-boot del BIOS (3)}
+	%~ Hoy en día sería deseable:
+	%~ \begin{itemize}
+		%~ \item Acceso al stack TCP, por ejemplo para gestores de 
+		%~ arranque por red (en lugar de depender de la option ROM con 
+		%~ soporte PXE que pudiera tener la NIC).
+		%~ \item Uso de dispositivos como un mouse.
+		%~ \item La posibilidad de ampliar o mejorar el soporte de 
+		%~ hardware sin option ROMs.
+		%~ \item Acceso a direccionamiento de 32 o 64 bits.
+	%~ \end{itemize}
+%~ }
+%~ 
+%~ \frame{
+%~ 
+%~ Efteråret 2004
+%~ \subsection{Valg af projekt og vejleder}
+%~ \frametitle{Tilfældighed}
+%~ 
+%~ \begin{block}{Kryptering med kaotiske kredsløb}
+%~ \begin{columns}
+%~ \column{.3\textwidth} \hspace{0.5cm}
+%~ \includegraphics[width=0.7\textwidth]{imagenes/linti-f} 
+%~ \column{.7\textwidth}
+%~ \textit{Mogens Høgh Jensen}, NBI
+%~ \end{columns}
+%~ \end{block}
+%~ 
+%~ \begin{block}{Sandriller}
+%~ \begin{columns}
+%~ \column{.3\textwidth} \hspace{0.5cm}
+%~ \includegraphics[width=0.7\textwidth]{imagenes/linti-f} 
+%~ \column{.7\textwidth}
+%~ \textit{Clive Ellegaard}, NBI og \emph{Tomas Bohr}, DTU
+%~ \end{columns}
+%~ \end{block}
+%~ }
+
+
+
+
+
+\end{document}
